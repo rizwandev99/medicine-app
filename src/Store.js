@@ -24,11 +24,14 @@ const UserContextProvider = (props) => {
   const [medArray, setMedArray] = useState(obj);
   const [counter, setCounter] = useState(0);
   const [total, setTotal] = useState(0);
+
+  // Overlay setting
   const [showOverlay, setShowOverlay] = useState(false);
 
   const toggleOverlay = () => {
     setShowOverlay(!showOverlay);
   };
+  // Overlay finished
 
   useEffect(() => {
     const totalCount = medArray.reduce((total, item) => total + item.qty, 0);
