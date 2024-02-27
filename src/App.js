@@ -13,11 +13,11 @@ function App() {
   };
   return (
     <UserContextProvider>
-      <Header toggleOverlay={toggleOverlay} />
+      <Header />
       <AddProduct />
       <AddCart />
-      <Overlay showOverlay={showOverlay}>
-        <CartOpenPage toggleOverlay={toggleOverlay} />
+      <Overlay>
+        <CartOpenPage />
       </Overlay>
     </UserContextProvider>
   );

@@ -9,6 +9,9 @@ export const UserContext = createContext({
   increaseQty: () => {},
   decreaseQty: () => {},
   clearQty: () => {},
+  // Overlay
+  showOverlay: false,
+  toggleOverlay: () => {},
 });
 
 const obj = [
@@ -21,6 +24,11 @@ const UserContextProvider = (props) => {
   const [medArray, setMedArray] = useState(obj);
   const [counter, setCounter] = useState(0);
   const [total, setTotal] = useState(0);
+  const [showOverlay, setShowOverlay] = useState(false);
+
+  const toggleOverlay = () => {
+    setShowOverlay(!showOverlay);
+  };
 
   useEffect(() => {
     const totalCount = medArray.reduce((total, item) => total + item.qty, 0);
@@ -68,6 +76,9 @@ const UserContextProvider = (props) => {
           increaseQty,
           decreaseQty,
           clearQty,
+          // Overlay
+          showOverlay,
+          toggleOverlay,
         }}
       >
         {props.children}

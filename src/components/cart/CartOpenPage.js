@@ -14,7 +14,7 @@ const CartOpenPage = (props) => {
 
   const clear = () => {
     user.clearQty();
-    props.toggleOverlay();
+    user.toggleOverlay();
   };
 
   const body = user.medArray.map((item, index) => {
@@ -57,7 +57,7 @@ const CartOpenPage = (props) => {
         className={classes.totalAmt}
       >{`Total amt is : Rs ${user.total}`}</div>
 
-      <button onClick={props.toggleOverlay} className={classes.button}>
+      <button onClick={user.toggleOverlay} className={classes.button}>
         Order
       </button>
       <button
