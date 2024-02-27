@@ -1,0 +1,40 @@
+.orderBody {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem;
+}
+
+.singleOrder {
+  margin-right: 1rem;
+}
+
+.qtyModify {
+  border: 1px solid rgb(19, 209, 9);
+  padding: 0.5rem;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 0.5rem;
+}
+
+.singleQty {
+  padding: 0.5rem;
+}
+
+.totalAmt {
+  font-size: 2rem;
+  margin: 0.5rem;
+}
+
+.button {
+  border: none;
+  padding: 1rem;
+  border-radius: 1rem;
+  color: white;
+  background-color: blue;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-right: 1rem;
+}
