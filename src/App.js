@@ -7,10 +7,6 @@ import Overlay from "./components/overlay/Overlay";
 import CartOpenPage from "./components/cart/CartOpenPage";
 
 function App() {
-  const [showOverlay, setShowOverlay] = useState(false);
-  const toggleOverlay = () => {
-    setShowOverlay(!showOverlay);
-  };
   return (
     <UserContextProvider>
       <Header />

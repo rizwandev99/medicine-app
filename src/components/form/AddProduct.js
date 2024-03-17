@@ -11,11 +11,11 @@ const AddProduct = () => {
     const obj = {
       name: event.target.name.value,
       desc: event.target.desc.value,
-      price: event.target.price.value,
+      price: parseInt(event.target.price.value),
     };
 
     user.addUser(obj);
-    console.log("Hi", user);
+    console.log("Hi", obj);
   };
   return (
     <div className={classes.form}>

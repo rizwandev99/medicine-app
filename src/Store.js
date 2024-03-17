@@ -43,10 +43,11 @@ const UserContextProvider = (props) => {
       (total, item) => total + item.qty * item.price,
       0
     );
-    setTotal(() => totalCount);
+    setTotal(totalCount);
   }, [medArray]);
 
   const addUser = (newItem) => {
+    newItem.qty = 1;
     setMedArray([...medArray, newItem]);
   };
 
