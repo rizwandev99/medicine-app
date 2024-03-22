@@ -1,4 +1,5 @@
 import { useState, createContext, useEffect } from "react";
+import axios from "axios";
 
 export const UserContext = createContext({
   medArray: [],
@@ -21,7 +22,7 @@ const obj = [
 ];
 
 const UserContextProvider = (props) => {
-  const [medArray, setMedArray] = useState(obj);
+  const [medArray, setMedArray] = useState([]);
   const [counter, setCounter] = useState(0);
   const [total, setTotal] = useState(0);
 
@@ -33,6 +34,67 @@ const UserContextProvider = (props) => {
   };
   // Overlay finished
 
+  // //Getting data from server
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const request = await fetch(
+  //       "https://learnreact-medicine-app-default-rtdb.firebaseio.com/med.json"
+  //     );
+  //     // .then((res) => {
+  //     //   if (res.ok) {
+  //     //     console.log("Fetched Data successfully");
+  //     //     return res.json();
+  //     //   } else {
+  //     //     throw new Error("Error in fetching");
+  //     //   }
+  //     // })
+  //     // .then((data) => {
+  //     //   console.log("Data from api", data);
+  //     //   if (data.length > 0) {
+  //     //     setMedArray(data);
+  //     //   } else {
+  //     //     setMedArray(obj);
+  //     //   }
+  //     // });
+  //     const response = await request.json();
+  //     console.log("MMM", response);
+  //     setMedArray(() => response);
+  //   }
+  //   fetchData();
+  // }, []);\
+
+  // // Fetching Data with axios
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       "https://learnreact-medicine-app-default-rtdb.firebaseio.com/med.json"
+  //     )
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       if (response) {
+  //         setMedArray(response.data);
+  //       }
+  //     });
+  // }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://learnreact-medicine-app-default-rtdb.firebaseio.com/med.json"
+        );
+        if (response.data) {
+          setMedArray(response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        // Handle error here, e.g., display an error message to the user
+      }
+    };
+
+    fetchData();
+  }, []);
+  //
   useEffect(() => {
     const totalCount = medArray.reduce((total, item) => total + item.qty, 0);
     setCounter(totalCount);
@@ -46,7 +108,20 @@ const UserContextProvider = (props) => {
     setTotal(totalCount);
   }, [medArray]);
 
-  const addUser = (newItem) => {
+  useEffect(() => {
+    fetch(
+      "https://learnreact-medicine-app-default-rtdb.firebaseio.com/med.json",
+      {
+        method: "PUT",
+        body: JSON.stringify(medArray),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  }, [medArray]);
+
+  const addUser = async (newItem) => {
     newItem.qty = 1;
     setMedArray([...medArray, newItem]);
   };

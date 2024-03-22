@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Header from "./components/header/Header";
 import AddProduct from "./components/form/AddProduct";
 import AddCart from "./components/form/AddCart";
